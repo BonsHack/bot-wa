@@ -22,7 +22,7 @@
             const phone = document.getElementById('phone').value;
 
             // Kirim nomor ke backend di Replit untuk menghasilkan QR Code
-            fetch('https://replit.com/@fpaleka850/BotWa?s=app>/generateQR', {  // Ganti dengan URL Replit
+            fetch('https://replit.com/@fpaleka850/BotWa?s=app', {  // Ganti dengan URL Replit
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ phone })
