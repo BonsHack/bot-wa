@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Bot Pairing</title>
+</head>
+<body>
+    <h2>Masukkan Nomor WhatsApp</h2>
+    <form id="waForm">
+        <label for="phone">Nomor WhatsApp:</label>
+        <input type="text" id="phone" placeholder="628xxxxxxx" required />
+        <button type="submit">Masukkan</button>
+    </form>
+
+    <h3>QR Code Pairing</h3>
+    <div id="qrCode"></div>
+
+    <script>
+        document.getElementById('waForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const phone = document.getElementById('phone').value;
+
+            // Kirim nomor ke backend di Replit untuk menghasilkan QR Code
+            fetch('https://replit.com/@fpaleka850/BotWa?s=app>/generateQR', {  // Ganti dengan URL Replit
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ phone })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.qr) {
+                    document.getElementById('qrCode').innerHTML = `<img src="${data.qr}" alt="QR Code" />`;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
